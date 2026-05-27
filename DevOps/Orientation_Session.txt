@@ -68,20 +68,13 @@ DevOps Tools Stack :::
 			
 				- https://hub.docker.com/  # Create using existing Github 
 				
-			4. Install MobaXTerm on Local Machine - Windows Users
-			
-				- SSH Agent to connect to Remote Servers.
-				
-				- https://mobaxterm.mobatek.net/download-home-edition.html  
-					# Choose Installer Edition.
-					# Right click & Extract 
-					# Goto to the Folder & Run the Exec.
 					
-			5. Install Visual Studio Code on Local Machine 	- Develop the Source Code.
+			4. Install Visual Studio Code on Local Machine 	- Develop the Source Code.
 				
-				- https://code.visualstudio.com/download				
+				- https://code.visualstudio.com/download	
+				
 			
-			6. Install git client on Local Machine
+			5. Install git client on Local Machine
 			
 				- https://git-scm.com/install/
 			
@@ -105,7 +98,15 @@ DevOps Tools Stack :::
 												- Open Git Bash Terminal 
 													- git --version
 													
-													
+			6. Install MobaXTerm/Putty on Local Machine - Windows Users
+			
+				- SSH Agent to connect to Remote Servers.
+				
+				- https://mobaxterm.mobatek.net/download-home-edition.html  
+					# Choose Installer Edition.
+					# Right click & Extract 
+					# Goto to the Folder & Run the Exec.
+					
 			7. Install Terraform on Local Machine
 																
 				# https://developer.hashicorp.com/terraform/install
