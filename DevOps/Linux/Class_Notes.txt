@@ -1349,45 +1349,8 @@ do
     echo "Loop count is ${COUNT}"
     COUNT=$((COUNT + 1))
 done
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 < 	Less than operator 
 <=  Less than or equal
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Functions/Methods :
 
