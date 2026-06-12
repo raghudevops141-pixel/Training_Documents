@@ -821,136 +821,6 @@ Day 7 - 11th June 2026
 	
 		- Shell/Groovy/YAML/Python
 		
-	Programming (vs) Scripting Langauages :::
-		
-		- Programming Langauages :		
-			- Used to develop the end-to-end Business Applications 
-			- Huge collection of Application programs
-			- Java/.Net_Framework/Python/Ruby/Cobol/C
-			
-			- E_Commerce Web/Mobile Application
-			
-		- Scripting Langauages:
-			- Used to perform some process Automation/Validation.
-			- Light-weight compared to Programming Langauages
-			- Java Scripting/Python/Shell/Groovy/YAML/
-	
-	
-	Shell Scripting Language :
-
-	- Shell Scripting is a collection shell commands 
-	- Shell Script file should be saved as *.sh (Extention should be .sh)
-	
-	
-	Algorithms :::
-	
-		- Step by Step process to execute any task/application
-		
-		
-	Data ::: -> Is just the Raw Text => Without anym meaning!
-	
-		Eg.: India ???
-	
-	
-	Information ::: -> Is the processed Data. 
-	
-			-> India is a Country 
-			
-			
-	Variables ::
-	
-		x = 5 
-		
-	Datatypes ::
-	
-		integer x = 5
-		
-		String a = "Hello"
-		
-		Char b = "A"
-
-		float xx = 1.5
-	
-	
-		Stud_Name 	= "XYZ"
-	
-		Stud_Numebr = 1001
-		
-		
-		Arrays: Group of variables with same name and Datatype:
-		
-			String Stud_Name[5] = ['abc','asd','qwe','qwe','qwer']
-									0		1	2		3	4
-		
-							
-					Stud_Name[0] = 'abc'
-					
-		Iterations:	Perform some repeated task based on certian condition.
-		
-			Looping Concepts ;
-			
-				for / while loop
-					
-			
-		Data validation:
-		
-			- Conditional statements 
-			
-				- If Conditional Statement 
-				- Switch case Statement
-			
-			- Operator 
-				- Arithmetic / Conditional / 
-			
-			
-	File Handling Concepts --> Sequential in nature.
-							   - Used just for Batch process 
-	
-		- Create/Read/Update/Delete files 
-		- *json/*yaml/*.txt/*.csv/*.xlsx
-		
-	Database :::
-	
-		Sequential & Key Sequential Data (Random Access)
-		
-		Tables : Collection of Rows & Columns
-		
-		RDBMS :::
-		
-		Table : Stud_Info_Table:
-		
-		
-		Stud_No		Stud_Name	Email_ID		Phone_Number	Course_Name
-		
-		1001		asdfasdf	asdf@asdf.com	123123123		DevOps
-		1002		asdfasdf	asdf1@asdf.com	123323123		DevOps
-		1003		asdfasdf	asdf2@asdf.com	123423123		DevOps			
-		1004		asdfasdf	asdf2@asdf.com	123423123		DevOps			
-		
-
-	- External System: 
-	
-		- Traget Server
-		- Storage Servers 
-		- Queuing System 
-		- Network 
-			
-	
-	
-	- Shell
-			
-
-
-	Concepts related to Linux Shell Scripts 
-	
-	Demo Shell Scripts
-	
-	Scripting Languages : Shell/Groovy/YAML/Python(Good to Have) 
-	
-	Programming Languages :
-		 (vs)	
-	Scripting Languages :
-	
 -> Pre-requisites ::::
 
 			Scripting Languages ?
@@ -1373,3 +1243,276 @@ echo "Program name: $0"
 echo "1st argument: $1"
 echo "2nd argument: $2"
 echo "3rd argument: $3"
+
+
+
+
+
+######################
+Day 8 - 12th June 2026
+######################	
+
+
+
+Functions/Methods :
+
+	==> Define once and invoke many times as needed.
+	
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A script to show the usage of command line arguments, Here we access positional arguments using $1, $2 …
+
+Source Code:
+
+vi script1.sh
+
+#!/bin/bash
+
+echo "Total no. of argument: $#"
+
+ 
+
+echo "Program name: $0"
+echo "1st argument: $1"
+echo "2nd argument: $2"
+echo "3rd argument: $3"
+
+sudo apt install "$4" -y
+
+
+./script1.sh Hello Hai Java 
+
+sudo apt install java -y
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Write a Shell Script to :
+
+
+	- Setup the Build Server - Java Application Build using Maven	
+
+vi java_build_Setup.sh
+
+#!/bin/bash
+#
+echo "Setup the Build Server - Java Application Build using Maven"
+sudo apt update -y 
+sudo apt install git -y 
+sudo apt install $1 -y				# sudo apt install jdk17 -y 
+sudo apt install $2 -y				# sudo apt install maven -y 
+
+./java_build_Setup.sh jdk17 maven
+	
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+	
+	- Setup the Test Server - Test Java Web Application using Selenium
+	
+#!/bin/bash
+#
+
+pkg1 = "jdk17"
+
+echo "Setup the Test Server - Test Java Web Application using Selenium"
+sudo apt update -y  
+sudo apt install "$pkg1" -y
+sudo apt install $2 -y	
+
+./java_Test_Setup jdk17 selenium
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	- Setup the Build Server - Java Application Build using Maven and Docker	
+	
+vi java_dockerbuild_Setup.sh
+
+#!/bin/bash
+#
+echo "Setup the Build Server - Java Application Build using Maven"
+sudo apt update -y 
+sudo apt install git -y 
+sudo apt install $1 -y
+sudo apt install $2 -y
+sudo apt install $3 -y
+
+./java_build_Setup jdk11 maven docker.io
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	- Setup the Application Web_Server and Deploy Java Application Artifacts 
+	
+vi java_WebAppServer_Setup.sh
+
+#!/bin/bash
+#
+echo "Setup the Application Web_Server and Deploy Java Application Artifacts"
+sudo apt update -y 
+sudo apt install $1 -y
+sudo apt install $2 -y
+
+./ava_WebAppServer_Setup.sh jdk11 tomcat	
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A script to show the usage of function
+
+Source Code:
+
+
+print_hello
+
+#!/bin/bash
+
+# Multi-line Comment!
+:'
+dfsd
+fs
+dfsddf
+s
+':
+
+
+# Function definition
+function print_hello()
+{
+    	echo "====="
+    	echo "Hello"
+    	echo "====="
+}
+
+# Call the function - print_hello
+print_hello
+
+print_hello
+print_hello
+print_hello
+print_hello
+
+#print_hello
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Package Installation ::
+
+
+	- apt / yum 
+	
+	Manual Installation of packages in zip file format!
+	
+	1. *.exec ==> run using Windows Installer 
+	
+	2. Binaries ==> Setup Environment Variable 
+
+
+	
+
+
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#Install Tomcat ::  https://tomcat.apache.org/download-80.cgi
+
+#https://tomcat.apache.org/
+
+
+# Pre-Requisites ::::
+
+sudo -i
+sudo apt update -y
+sudo apt install default-jdk -y
+java --version
+
+# Tomcat Installation & Setup :::
+
+
+cd /opt/
+wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.99/bin/apache-tomcat-8.5.99.tar.gz
+tar -xvzf /opt/apache-tomcat-8.5.99.tar.gz
+mv apache-tomcat-8.5.99 tomcat
+
+cd tomcat/bin/
+./startup.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A script to demostrate usage of sed command
+
+Source Code:
+
+#!/bin/bash
+
+# Basic text substitution using sed
+echo "Bash Scripting Bash Language" | sed 's/Bash/Perl/'
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+vi /etc/profile 
+
+export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+
+
+export MAVEN_HOME="/usr/share/maven"
+PATH=$PATH:$HOME/bin:$JAVA_HOME/bin:$MAVEN_HOME/bin	
