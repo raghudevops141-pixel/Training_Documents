@@ -384,3 +384,198 @@ Next:
 	- Troubleshoot any Jenkins related Issues
 
 
+
+
+
+#########################
+Day 18 - 30th June 2026
+#########################
+
+	- Jenkins_Master 			jdk_21
+		- Jenkins_Slave 		jdk_21
+		
+		
+	- Application Build :
+		- https://github.com/PL-DevOps-Cloud-2705/java-webapp-project.git			# jdk17
+		
+		- jdk version 17
+				
+				
+		- https://github.com/PL-DevOps-Cloud-2705/java-webapp-project2.git			# jdk21
+
+
+
+	Environments:
+	
+		Dev 
+		
+		Build 					# *.war
+		
+		Targets: 
+		
+			Test 
+				- QA 				*.war
+				
+				- UAT 				*.war
+				
+			Prod 
+				- Prod_Servers		*.war
+			
+
+		
+
+	Setup the Target Tomcat Server :::
+	
+	- Jenkins_Master (VM)
+		- Jenkins_Slave (VM)
+
+	- Test_Server (VM)
+			--> Perform QA Testing 
+			
+			--> Tools :
+					- jdk 
+					- Tomcat WAS - port: 8080
+		
+
+	Deployment:::	Copying the artifacts from one server to another!
+	
+	
+		Source_Source :														Target_Server:
+			
+			Jenkin_Slave 														Tomcat_Server 
+			
+				Source_File:					============>						Target_Directory:				
+				
+					*/target/*.war														/opt/tomcat/webapps
+				
+				Upon Deployment :
+											
+																						/opt/tomcat/webapps/*.war
+																						
+																						
+																					/opt/tomcat/webapps/target/*.war
+			
+			
+			
+pipeline {
+    agent { label 'slave1' }
+    
+    environment {
+        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
+    } 
+    
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout for Java Application'
+				git 'https://github.com/PL-DevOps-Cloud-2705/java-webapp-project.git'
+            }
+        }
+        stage('Application Build') {
+            steps {
+                echo 'Perform Java Application Build'
+				sh 'mvn clean package'
+            }
+        }
+        stage('Deploy to QA Server') {
+            steps {
+              script{
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Tomcat_Server_QA', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target/', sourceFiles: 'target/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+			  }
+            }
+        }
+    }
+}			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	
+sshPublisher(publishers: [sshPublisherDesc(configName: 'Tomcat_Server_QA', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target/', sourceFiles: 'target/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])		
+
+	
+	
+	- Web Application Server:
+	
+	- Tomcat WAS 
+	- Publish Over SSH Plugins to Deploy the Artifacts to Target Server.
+	- Create CICD Pipeline Projects to automate the Applications build  and deployments
+	- Onboard Applications to DevOps Practice
+
+
+
+
+Example ::::
+
+pipeline {
+    agent { label 'slave1' }
+    
+    environment {
+        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
+    } 
+    
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout for Java Application'
+				git 'https://github.com/PL-DevOps-Cloud-2705/java-webapp-project.git'
+            }
+        }
+        stage('Application Build') {
+            steps {
+                echo 'Perform Java Application Build'
+				sh 'mvn clean package'
+            }
+        }
+        stage('Deploy to QA Server') {
+            steps {
+              script{
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Tomcat_Server_QA', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target/', sourceFiles: 'target/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+			  }
+            }
+        }
+        stage('Peform QA Testing') {
+            steps {
+                echo 'Perform QA Testing'
+            }
+        }
+        stage('Deploy to UAT Server') {
+            steps {
+              script{
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Tomcat_Server_UAT', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target/', sourceFiles: 'target/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+			  }
+            }
+        }
+        stage('Peform UAT Testing') {
+            steps {
+                echo 'Perform UAT Testing'
+            }
+        }
+        stage('Deploy to PROD Server') {
+            steps {
+              script{
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Tomcat_Server_PROD', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target/', sourceFiles: 'target/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+			  }
+            }
+        }
+    }
+}			
+
+Next:
+
+	- Enable Build Trigger 
+	- Periodic Backup & Recovery
+	- Periodic Upgrade of Jenkins Services and Plugins 
+	- Troubleshoot any Jenkins related Issues
+
+
+
+
